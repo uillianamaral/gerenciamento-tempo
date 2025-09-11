@@ -1,0 +1,74 @@
+<mat-sidenav-container class="sidenav-container">
+
+  <mat-sidenav #sidenav class="sidenav"
+    [attr.role]="(isDispositivoMovel | async) ? 'dialog' : 'navigation'"
+    [mode]="(isDispositivoMovel | async) ? 'over' : 'side'"
+    [opened]="(isDispositivoMovel | async) === false">
+
+    <mat-toolbar>
+      <mat-icon></mat-icon>
+    </mat-toolbar>
+      <mat-nav-list>
+      <a mat-list-item href="#">
+        <div style="display: flex;">
+          <mat-icon>policy</mat-icon>
+          <!-- <span class="nav-item-text">Ocorrências</span> -->
+        </div>
+      </a>
+      <a mat-list-item href="#">
+       <div style="display: flex;">
+          <mat-icon>format_list_numbered_rtl</mat-icon>
+          <!-- <span class="nav-item-text">Visualizar Fila</span> -->
+       </div>
+      </a>
+    </mat-nav-list>
+
+  </mat-sidenav>
+
+  <mat-sidenav-content>
+    <mat-toolbar color="primary">
+      @if (isDispositivoMovel | async) {
+        <button
+          type="button"
+          aria-label="Toggle sidenav"
+          mat-icon-button
+          (click)="sidenav.toggle()">
+          <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
+        </button>
+      }
+      <span class="toolbar-title">Controle tempo de espera</span>
+      
+      @if (usuarioLogado) {
+        
+        <div class="user-profile">
+          <button matIconButton [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+            <mat-icon>account_circle</mat-icon>
+          </button>
+          <mat-menu #menu="matMenu">
+            <button mat-menu-item>
+              <mat-icon>logout</mat-icon>
+              <span>Sair</span>
+            </button>
+          </mat-menu>
+
+        </div>
+
+      }
+    </mat-toolbar>
+
+    <div class="page-header">
+      @for (part of cabecalhoPagina; track part; let isLast = $last) {
+        <span>{{ part }}</span>
+        @if (!isLast) {
+          <span class="breadcrumb-separator">&gt;</span>
+        }
+      }
+    </div>
+
+    <main class="content">
+      <router-outlet></router-outlet>
+    </main>
+
+  </mat-sidenav-content>
+
+</mat-sidenav-container>

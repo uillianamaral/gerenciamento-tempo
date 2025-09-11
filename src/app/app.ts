@@ -1,12 +1,13 @@
 import { Component, signal } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-
+import { MaterialModule } from './modules/material-module';
 @Component({
   selector: 'app-root',
+  standalone: true,
   imports: [RouterOutlet],
-  templateUrl: './app.html',
-  styleUrl: './app.scss'
+  template: `<router-outlet></router-outlet>`, // Template pode ser inline
 })
 export class App {
+  
   protected readonly title = signal('app-gerenciamento-tempo');
 }

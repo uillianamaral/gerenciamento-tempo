@@ -1,0 +1,83 @@
+.sidenav-container {
+  height: 100%;
+}
+
+.sidenav {
+  width: 60px;
+}
+
+.sidenav .mat-toolbar {
+  background: inherit;
+}
+
+// // Oculta o texto do menu quando o sidenav está no modo "fixo" (desktop)
+// .sidenav-container:not(.mat-drawer-container-has-open) .sidenav.mat-drawer-side .nav-item-text {
+//   display: none;
+// }
+
+.mat-toolbar.mat-primary {
+  position: sticky;
+  top: 0;
+  z-index: 2;
+}
+
+.page-header {
+  // Regra única e consolidada
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap; 
+  gap: 8px;
+  padding: 16px 24px;
+  background-color: #f5f5f5;
+  border-bottom: 1px solid #e0e0e0;
+  font-size: 1.1em;
+  color: #333;
+}
+
+.breadcrumb-separator {
+  // Apenas a cor é necessária, o espaçamento é controlado pelo 'gap' no pai
+  color: #888;
+}
+
+.content {
+  padding: 24px;
+}
+
+.toolbar-title {
+  
+  flex: 1 1 auto; // Ocupa o espaço disponível, permitindo encolher
+  
+  min-width: 0; // Força o elemento a ser capaz de encolher além do seu conteúdo
+  
+  overflow: hidden; // Esconde o texto que transbordar
+
+  text-overflow: ellipsis; // Mostra "..." no final do texto cortado
+
+  white-space: nowrap; // Impede que o texto quebre em múltiplas linhas
+
+  margin: 0 16px; // margem para não colar nos ícones
+
+  text-align: center; // Centraliza o texto
+  
+  font-size: 0.6em; // Deixa a fonte do título menor.
+
+}
+
+.user-profile {
+  
+  flex-shrink: 0; // Garante que esta seção nunca irá encolher
+  margin-right: auto;
+  display: flex; // Estilos ajustados para ser menor e mais discreto
+  align-items: center;
+  gap: 4px;  // Espaçamento menor entre o ícone e o texto 
+  font-size: 0.8em; // Fonte menor para o texto do perfil
+}
+
+// <-- NOVA REGRA ADICIONADA -->
+// Regra de responsividade para esconder o texto em telas pequenas
+@media (max-width: 480px) {
+  .user-profile span {
+    // Esconde o texto (ex: "SUPERVISOR") em telas muito pequenas
+    display: none;
+  }
+}
