@@ -6,15 +6,15 @@ import { BehaviorSubject } from 'rxjs';
 })
 export class PageHeaderService {
   // Usamos um BehaviorSubject para guardar e emitir o "breadcrumb" atual
-  private headerTitle$ = new BehaviorSubject<string[]>([]);
+  private headerTitle = new BehaviorSubject<string[]>([]);
 
   // Expomos como um observable público para os componentes "escutarem"
-  public currentHeaderTitle$ = this.headerTitle$.asObservable();
+  public currentHeaderTitle = this.headerTitle.asObservable();
 
   constructor() { }
 
   // Método que as telas usarão para definir seu próprio título
   setHeader(titleParts: string[]): void {
-    this.headerTitle$.next(titleParts);
+    this.headerTitle.next(titleParts);
   }
 }

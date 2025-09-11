@@ -3,11 +3,13 @@
 }
 
 .sidenav {
-  width: 60px;
+  width: 200px;
+  background-color: #f5f5f5;
+  border-bottom: 1px solid #e0e0e0;
 }
 
 .sidenav .mat-toolbar {
-  background: inherit;
+ background-color: #f5f5f5;
 }
 
 // // Oculta o texto do menu quando o sidenav está no modo "fixo" (desktop)
@@ -22,15 +24,21 @@
 }
 
 .page-header {
-  // Regra única e consolidada
+  width: 100%;
   display: flex;
   align-items: center;
   flex-wrap: wrap; 
-  gap: 8px;
-  padding: 16px 24px;
+  padding: 16px 7px 16px 24px;
   background-color: #f5f5f5;
   border-bottom: 1px solid #e0e0e0;
-  font-size: 1.1em;
+  color: #333;
+}
+
+.cabecalho {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.89em;
   color: #333;
 }
 
@@ -43,25 +51,6 @@
   padding: 24px;
 }
 
-.toolbar-title {
-  
-  flex: 1 1 auto; // Ocupa o espaço disponível, permitindo encolher
-  
-  min-width: 0; // Força o elemento a ser capaz de encolher além do seu conteúdo
-  
-  overflow: hidden; // Esconde o texto que transbordar
-
-  text-overflow: ellipsis; // Mostra "..." no final do texto cortado
-
-  white-space: nowrap; // Impede que o texto quebre em múltiplas linhas
-
-  margin: 0 16px; // margem para não colar nos ícones
-
-  text-align: center; // Centraliza o texto
-  
-  font-size: 0.6em; // Deixa a fonte do título menor.
-
-}
 
 .user-profile {
   
@@ -73,11 +62,14 @@
   font-size: 0.8em; // Fonte menor para o texto do perfil
 }
 
-// <-- NOVA REGRA ADICIONADA -->
 // Regra de responsividade para esconder o texto em telas pequenas
 @media (max-width: 480px) {
   .user-profile span {
     // Esconde o texto (ex: "SUPERVISOR") em telas muito pequenas
     display: none;
   }
+}
+
+.toolbar-spacer {
+  flex: 1 1 auto; 
 }

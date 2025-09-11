@@ -1,29 +1,33 @@
 import { Injectable } from '@angular/core';
-
 import { BehaviorSubject } from 'rxjs';
 
-// Define os tipos de usuário permitidos para evitar erros de digitação
-export type UserRole = 'POLICIA MILITAR' | 'POLICIA CIVIL' | 'SUPERVISOR' | null;
+// Atualize os tipos de usuário para corresponder aos privilégios definidos
+export type UserRole = 'SUPERVISAO' | 'PM' | 'PC' | null;
 
 @Injectable({
   providedIn: 'root'
 })
 export class UsuarioService {
 
-  // BehaviorSubject guarda o valor atual e emite para novos inscritos.
   private usuarioAtual = new BehaviorSubject<UserRole>(null);
-
-  // Expomos o usuário como um Observable, que os componentes podem "ouvir".
   public usuarioAtual$ = this.usuarioAtual.asObservable();
 
   constructor() {
-    // SIMULAÇÃO DE LOGIN: Define um usuário padrão ao iniciar o serviço.
-    // Mude aqui para testar outros perfis!
-    this.setUsuario('POLICIA CIVIL'); 
+    // SIMULAÇÃO DE LOGIN: Defina um usuário para testar.
+    // Altere para 'PM', 'PC' ou 'SUPERVISAO' para ver os menus diferentes
+    this.setUsuario('PM');
   }
 
-  // Método que o componente de login (no futuro) usará para definir o usuário.
   public setUsuario(role: UserRole) {
     this.usuarioAtual.next(role);
+  }
+
+  public hasPermission(requiredRoles: UserRole[]): boolean {
+    const currentUserRole = this.usuarioAtual.getValue();
+    console.log('Usuário atual:', currentUserRole);
+    if (!currentUserRole) {
+      return false;
+    }
+    return requiredRoles.includes(currentUserRole);
   }
 }
