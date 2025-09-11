@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { P2Component } from './p2.component';
+import { FilaEsperaComponent } from './fila-espera.component';
 
-describe('P2Component', () => {
-  let component: P2Component;
-  let fixture: ComponentFixture<P2Component>;
+describe('FilaEsperaComponent', () => {
+  let component: FilaEsperaComponent;
+  let fixture: ComponentFixture<FilaEsperaComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [P2Component]
+      imports: [FilaEsperaComponent]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(P2Component);
+    fixture = TestBed.createComponent(FilaEsperaComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

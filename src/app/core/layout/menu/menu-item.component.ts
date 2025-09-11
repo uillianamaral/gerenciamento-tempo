@@ -16,10 +16,10 @@ export const itensMenu: MenuItem[] = [
     privileges: ['SUPERVISAO', 'PM', 'PC']
   },
   {
-    label: 'P2: Relatórios',
+    label: 'Fila de Espera',
     icon: 'bar_chart',
-    route: '/p2',
-    privileges: ['SUPERVISAO']
+    route: '/fila-espera',
+    privileges: ['PM']
   },
   {
     label: 'P3: Gestão de Usuários',

@@ -15,7 +15,7 @@ export class PaginaPrincipal implements OnInit {
   ngOnInit(): void {
     // Define o cabeçalho da página
     setTimeout(() => {
-      this.pageHeaderService.setHeader(['Página Inicial', 'Detalhes']);
+      this.pageHeaderService.setHeader(['Página Inicial']);
     });
   }
 }
