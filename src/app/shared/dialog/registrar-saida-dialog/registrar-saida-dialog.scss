@@ -1,0 +1,17 @@
+
+.dialog-title-container {
+  text-align: center;
+  position: relative; 
+  margin-bottom: 20px;
+}
+
+.close-button {
+  position: absolute;
+  top: 50%; 
+  right: -10px; 
+  transform: translateY(-50%);
+}
+
+mat-form-field {
+  width: 100%;
+}

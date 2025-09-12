@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 
-// Atualize os tipos de usuário para corresponder aos privilégios definidos
+// Tipos de usuário para corresponder aos privilégios definidos
 export type UserRole = 'SUPERVISAO' | 'PM' | 'PC' | null;
 
 @Injectable({
@@ -24,7 +24,6 @@ export class UsuarioService {
 
   public hasPermission(requiredRoles: UserRole[]): boolean {
     const currentUserRole = this.usuarioAtual.getValue();
-    console.log('Usuário atual:', currentUserRole);
     if (!currentUserRole) {
       return false;
     }

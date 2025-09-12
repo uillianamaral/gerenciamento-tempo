@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit, NgZone, ChangeDetectorRef } from '@angular/core';
+import { Component, OnDestroy, OnInit, NgZone, ChangeDetectorRef, signal, model, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { PageHeaderService } from '../../core/services/page-header';
@@ -7,6 +7,9 @@ import { getCorPorTempo } from '../../utils/cor-por-tempo.util';
 import { interval, Subscription } from 'rxjs';
 import { formatarTempo } from '../../utils/formata-tempo.util';
 import { Router } from '@angular/router';
+import { MatDialog } from '@angular/material/dialog';
+import { SucessoDialog } from '../../shared/dialog/sucesso-dialog/sucesso-dialog';
+import { RegistrarSaidaDialog } from '../../shared/dialog/registrar-saida-dialog/registrar-saida-dialog';
 
 export interface Ocorrencia {
   id: string;
@@ -32,7 +35,8 @@ export class ListaOcorrenciaComponent implements OnInit, OnDestroy {
     private pageHeaderService: PageHeaderService,
     private router: Router,
     private ngZone: NgZone,
-    private cdr: ChangeDetectorRef
+    private cdr: ChangeDetectorRef,
+    public dialog: MatDialog 
   ) {}
 
   ngOnInit(): void {
@@ -83,6 +87,29 @@ export class ListaOcorrenciaComponent implements OnInit, OnDestroy {
     // Você pode passar o ID da ocorrência na rota
     this.router.navigate(['/fila-espera']);
     console.log('Navegando para detalhes da ocorrência:', ocorrencia.id);
+  }
+
+  // Adicionado: Método para abrir o diálogo
+  abrirDialogRegistrarSaida(): void {
+    const dialogRef = this.dialog.open(RegistrarSaidaDialog, {
+      width: '400px',
+      disableClose: true
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result?.success) {
+        const horaAtual = new Date().toLocaleTimeString('pt-BR');
+        this.mostrarMensagemSucesso(`Saída registrada com sucesso às ${horaAtual}!`);
+      }
+    });
+  }
+
+  // Adicionado: Método para mostrar o diálogo de sucesso
+  mostrarMensagemSucesso(mensagem: string): void {
+    this.dialog.open(SucessoDialog, {
+      width: '350px',
+      data: { message: mensagem }
+    });
   }
 
 }

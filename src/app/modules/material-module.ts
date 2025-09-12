@@ -8,6 +8,11 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatListModule } from '@angular/material/list';
 import { MatMenuModule } from '@angular/material/menu';
+import { MatDialogActions, MatDialogClose, MatDialogContent, MatDialogModule, MatDialogTitle } from '@angular/material/dialog';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { FormsModule } from '@angular/forms';
+import { MatSelectModule } from '@angular/material/select';
 
 // Crie um array com os módulos para não poluir o @NgModule
 const materialModules = [
@@ -15,7 +20,12 @@ const materialModules = [
   MatButtonModule,
   MatIconModule,
   MatSidenavModule,
-  MatListModule, MatMenuModule
+  MatListModule,
+  MatMenuModule,
+  MatDialogModule,
+  MatFormFieldModule,
+  MatInputModule,
+  MatSelectModule,
 ];
 
 @NgModule({

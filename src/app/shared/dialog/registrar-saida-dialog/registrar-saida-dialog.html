@@ -1,0 +1,34 @@
+<h1 mat-dialog-title>Saída</h1>
+<div mat-dialog-content>
+  <mat-form-field appearance="outline" style="width: 100%;">
+    <mat-label>Selecione o motivo</mat-label>
+    <mat-select [(ngModel)]="motivo" name="motivo" required>
+      <mat-option value="Ir ao hospital">Ir ao hospital</mat-option>
+      <mat-option value="Ir à delegacia">Ir à delegacia</mat-option>
+      <mat-option value="Outros">Outros</mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  @if (motivo === 'Outros') {
+    <mat-form-field appearance="outline" style="width: 100%; margin-top: 10px;">
+      <mat-label>Justifique</mat-label>
+      <textarea matInput
+                [(ngModel)]="justificativa"
+                name="justificativa"
+                required
+                cdkTextareaAutosize
+                cdkAutosizeMinRows="3"
+                cdkAutosizeMaxRows="5"></textarea>
+    </mat-form-field>
+  }
+</div>
+
+<div mat-dialog-actions align="end">
+  <button mat-stroked-button (click)="onCancel()">Cancelar</button>
+  <button mat-flat-button
+          color="primary"
+          (click)="onRegister()"
+          [disabled]="!motivo || (motivo === 'Outros' && !justificativa.trim())">
+    Registrar saída
+  </button>
+</div>
