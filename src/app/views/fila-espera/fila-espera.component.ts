@@ -3,8 +3,8 @@ import { PageHeaderService } from '../../core/services/page-header';
 import { MaterialModule } from '../../modules/material-module';
 import { Subscription, interval } from 'rxjs';
 import { CommonModule } from '@angular/common';
-import { formatarTempo } from '../../utils/formata-tempo.util';
-import { getCorPorTempo } from '../../utils/cor-por-tempo.util';
+import { formatarTempo } from '../../shared/utils/formata-tempo.util';
+import { getCorPorTempo } from '../../shared/utils/cor-por-tempo.util';
 
 @Component({
   selector: 'app-fila-espera',
