@@ -16,6 +16,7 @@ export interface Ocorrencia {
   status: string;
   segundosAtuais: number;
   tempoFormatado: string;
+  contagemParalisada?: boolean;
 }
 
 @Component({
@@ -64,7 +65,7 @@ export class ListaOcorrenciaComponent implements OnInit, OnDestroy {
 
   private startTimer(): void {
     // roda fora da zona para evitar gatilhos desnecessários de change detection
-      this.timerSubscription = interval(1000).subscribe(() => this.ngZone.run(() => this.tick()));
+      this.timerSubscription = interval(1000).subscribe(() => this.ngZone.run(() => this.atualizarTempo()));
   }
 
   private stopTimer(): void {
@@ -72,13 +73,15 @@ export class ListaOcorrenciaComponent implements OnInit, OnDestroy {
     this.timerSubscription = undefined;
   }
 
-  private tick(): void {
-    // atualiza somente campos internos dos objetos (não reatribui a array)
+  private atualizarTempo(): void {
     this.ocorrencias.forEach(o => {
-      o.segundosAtuais++;
-      o.tempoFormatado = formatarTempo(o.segundosAtuais);
+      // A contagem de segundos só acontece se a ocorrência não estiver pausada
+      if (!o.contagemParalisada) {
+        o.segundosAtuais++;
+        o.tempoFormatado = formatarTempo(o.segundosAtuais);
+      }
     });
-    // marca para checagem; mais seguro que detectChanges dentro de hooks
+
     this.cdr.markForCheck();
   }
 
@@ -97,10 +100,16 @@ export class ListaOcorrenciaComponent implements OnInit, OnDestroy {
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      if (result?.success) {
-        const horaAtual = new Date().toLocaleTimeString('pt-BR');
+
+      const horaAtual = new Date().toLocaleTimeString('pt-BR');
         this.mostrarMensagemSucesso(`Saída registrada com sucesso às ${horaAtual}!`);
-      }
+
+        // Pausa a contagem de todas as ocorrências e atualiza o status
+        this.ocorrencias.forEach(o => {
+          o.contagemParalisada = true;
+          o.status = 'Pausado'; 
+        });
+        this.cdr.markForCheck(); // Notifica o Angular para atualizar a view
     });
   }
 

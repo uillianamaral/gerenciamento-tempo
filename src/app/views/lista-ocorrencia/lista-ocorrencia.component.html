@@ -5,7 +5,7 @@
         <div class="item-info">
           <span class="texto-ocorrencia">Ocorrência: <strong>{{ item.id }}</strong></span>
           <span class="texto-status">Status: {{ item.status }}</span>
-          <div class="tempo-espera-box" [ngClass]="getCorPorTempo(item.segundosAtuais)">
+          <div class="tempo-espera-box" [ngClass]="getCorPorTempo(item.segundosAtuais, item.contagemParalisada)">
             Tempo de espera: {{ item.tempoFormatado }}
           </div>
         </div>
@@ -16,8 +16,7 @@
     }
   </div>
 
-  <div class="lista-container">
-    <div class="rodape-acoes">
-      <button mat-flat-button color="primary" (click)="abrirDialogRegistrarSaida()">Registrar Saída</button>
-    </div>
+  <div class="rodape-acoes">
+    <button mat-flat-button color="primary" (click)="abrirDialogRegistrarSaida()">Registrar Saída</button>
   </div>
+</div>
