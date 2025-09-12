@@ -9,15 +9,16 @@
       Menu
     </mat-toolbar>
     <mat-nav-list>
-      @for (itemMenu of menuItems; track itemMenu) {
-        <a mat-list-item [routerLink]="itemMenu.route" (click)="onMenuItemClickIsMobile(); onMenuItemClick(itemMenu)">
+      @for (itemMenu of menuItems; track itemMenu.route) {
+        <a mat-list-item [routerLink]="itemMenu.route"
+          (click)="onMenuItemClickIsMobile(); onMenuItemClick(itemMenu)">
           <div style="display: flex; align-items: center;">
             <mat-icon>{{ itemMenu.icon }}</mat-icon>
             <span class="nav-item-text" style="margin-left: 10px;">{{ itemMenu.label }}</span>
           </div>
         </a>
       }
-    </mat-nav-list>
+</mat-nav-list>
 
   </mat-sidenav>
 
@@ -37,7 +38,7 @@
   <div class="page-header">
 
     <div class="cabecalho">
-      @for (part of cabecalhoPagina; track part; let isLast = $last) {
+      @for (part of cabecalhoPagina; track $index; let isLast = $last) {
         <span>{{ part }}</span>
         @if (!isLast) {
           <span class="breadcrumb-separator">&gt;</span>

@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { FilaOcorrenciaComponent } from './fila-ocorrencia.component';
+import { ListaOcorrenciaComponent } from './lista-ocorrencia.component';
 
-describe('FilaOcorrenciaComponent', () => {
-  let component: FilaOcorrenciaComponent;
-  let fixture: ComponentFixture<FilaOcorrenciaComponent>;
+describe('ListaOcorrenciaComponent', () => {
+  let component: ListaOcorrenciaComponent;
+  let fixture: ComponentFixture<ListaOcorrenciaComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [FilaOcorrenciaComponent]
+      imports: [ListaOcorrenciaComponent]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(FilaOcorrenciaComponent);
+    fixture = TestBed.createComponent(ListaOcorrenciaComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

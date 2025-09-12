@@ -22,6 +22,12 @@ export const itensMenu: MenuItem[] = [
     privileges: ['PM']
   },
   {
+    label: 'Lista de Ocorrências',
+    icon: 'list',
+    route: '/lista-ocorrencias',
+    privileges: ['PM']
+  },
+  {
     label: 'P3: Gestão de Usuários',
     icon: 'people',
     route: '/p3',

@@ -16,7 +16,7 @@ export class FilaEsperaComponent implements OnInit, OnDestroy {
 
   posicaoFila = 12;
   private segundosTotaisEspera = 710;
-  tempoEsperaFormatado = '00:12:08';
+  tempoEsperaFormatado = '00:00:00';
   private timerSubscription?: Subscription;
 
   contagemParalisada = false;
@@ -32,7 +32,7 @@ export class FilaEsperaComponent implements OnInit, OnDestroy {
       this.pageHeaderService.setHeader(['Fila de Espera']);
     });
 
-    this.timerSubscription = interval(10).subscribe(() => {
+    this.timerSubscription = interval(1000).subscribe(() => {
       this.segundosTotaisEspera++;
       this.tempoEsperaFormatado = formatarTempo(this.segundosTotaisEspera);
       // Garante que a view seja atualizada (útil se houver ChangeDetectionStrategy.OnPush)

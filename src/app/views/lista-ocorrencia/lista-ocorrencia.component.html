@@ -1,0 +1,22 @@
+<div class="lista-container">
+  <div class="lista-ocorrencias">
+    @for(item of ocorrencias; track item.id) {
+      <button class="ocorrencia-item" (click)="verDetalhes(item)">
+        <div class="item-info">
+          <span class="texto-ocorrencia">Ocorrência: <strong>{{ item.id }}</strong></span>
+          <span class="texto-status">Status: {{ item.status }}</span>
+          <div class="tempo-espera-box" [ngClass]="getCorPorTempo(item.segundosAtuais)">
+            Tempo de espera: {{ item.tempoFormatado }}
+          </div>
+        </div>
+        <div class="item-acao">
+          <mat-icon>chevron_right</mat-icon>
+        </div>
+      </button>
+    }
+  </div>
+
+  <div class="rodape-acoes">
+    <button mat-flat-button color="primary">Registrar Saída</button>
+  </div>
+</div>

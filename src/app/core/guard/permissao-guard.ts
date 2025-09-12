@@ -12,7 +12,7 @@ export const permissaoGuard: CanActivateFn = (route, state) => {
 
   if (!temPermissao) {
     console.warn('Acesso negado para', state.url);
-    router.navigate(['/p1']); 
+    router.navigate(['/principal']); 
     return false;
   }
 
