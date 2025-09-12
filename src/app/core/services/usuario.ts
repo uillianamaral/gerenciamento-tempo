@@ -15,7 +15,7 @@ export class UsuarioService {
   constructor() {
     // SIMULAÇÃO DE LOGIN: Defina um usuário para testar.
     // Altere para 'PM', 'PC' ou 'SUPERVISAO' para ver os menus diferentes
-    this.setUsuario('PM');
+    this.setUsuario('PC');
   }
 
   public setUsuario(role: UserRole) {

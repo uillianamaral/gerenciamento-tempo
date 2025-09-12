@@ -28,6 +28,12 @@ export const itensMenu: MenuItem[] = [
     privileges: ['PM']
   },
   {
+    label: 'Painel de Controle',
+    icon: 'event_note',
+    route: '/painel-controle',
+    privileges: ['PC']
+  },
+  {
     label: 'P3: Gestão de Usuários',
     icon: 'people',
     route: '/p3',
@@ -37,7 +43,7 @@ export const itensMenu: MenuItem[] = [
     label: 'P4: Registrar Ocorrência',
     icon: 'add_alert',
     route: '/p4',
-    privileges: ['PM', 'PC']
+    privileges: ['PM']
   },
   {
     label: 'P5: Escalas de Serviço',
@@ -49,6 +55,6 @@ export const itensMenu: MenuItem[] = [
     label: 'P6: Inquéritos',
     icon: 'gavel',
     route: '/p6',
-    privileges: ['PC']
+    privileges: ['PM']
   }
 ];

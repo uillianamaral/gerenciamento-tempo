@@ -9,6 +9,7 @@ import { permissaoGuard } from './core/guard/permissao-guard';
 import { PaginaPrincipal } from './views/pagina-principal/pagina-principal.component';
 import { FilaEsperaComponent } from './views/fila-espera/fila-espera.component';
 import { ListaOcorrenciaComponent } from './views/lista-ocorrencia/lista-ocorrencia.component';
+import { PainelControleComponent } from './views/painel-controle/painel-controle-component';
 
 export const routes: Routes = [
   {
@@ -22,6 +23,7 @@ export const routes: Routes = [
       { path: 'p4', component: P4Component, canActivate: [permissaoGuard], data: { roles: ['PM','PC'] } },
       { path: 'p5', component: P5Component, canActivate: [permissaoGuard], data: { roles: ['PM'] } },
       { path: 'p6', component: P6Component, canActivate: [permissaoGuard], data: { roles: ['PC'] } },
+      { path: 'painel-controle', component: PainelControleComponent, canActivate: [permissaoGuard], data: { roles: ['PC'] } },
       { path: '', redirectTo: 'p1', pathMatch: 'full' }
     ]
   },
