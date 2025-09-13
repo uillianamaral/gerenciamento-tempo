@@ -1,3 +1,20 @@
-<div class="chart-container">
-  <canvas id="ocorrenciasChart">{{ ocorrenciasChart }}</canvas>
+<div class="dashboard-container">
+
+  <div class="chart-wrapper">
+    <div class="chart-container">
+      <canvas id="ocorrenciasChart">{{ ocorrenciasChart }}</canvas>
+    </div>
+  </div>
+
+  <div class="cards-wrapper">
+    <div class="summary-card" [ngClass]="getCorPorTempo(mediaEsperaSegundos)">
+      <div class="card-title">Média de Espera</div>
+      <div class="card-value time">{{ mediaEsperaFormatada }}</div>
+    </div>
+    <div class="summary-card" [ngClass]="getCorPorTempo(getSegundosParaCorVermelha())">
+      <div class="card-title">Atendimentos em espera acima de 45 min</div>
+      <div class="card-value">{{ atendimentosAcima45Min }}</div>
+    </div>
+  </div>
+
 </div>

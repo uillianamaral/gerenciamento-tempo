@@ -1,10 +1,86 @@
+.dashboard-container {
+  display: flex;
+  flex-wrap: wrap; // Permite que os itens quebrem para a próxima linha em telas menores
+  gap: 24px;
+  align-items: flex-start;
+}
+
+.chart-wrapper {
+  // Alterado de flex: 2 para flex: 4 para ocupar mais espaço
+  flex: 4;
+  min-width: 350px; // Largura mínima para o gráfico
+}
+
 .chart-container {
   position: relative;
-  height: 30vh; /* 30% da altura da tela */
-  width: 90%; /* Largura máxima para o gráfico */
-  margin: 20px auto; /* Centraliza o container */
-  padding: 10px;
+  height: 25vh;
+  padding: 20px;
   border: 1px solid #e0e0e0;
   border-radius: 8px;
   background-color: #fff;
+}
+
+.cards-wrapper {
+  // Mantido como flex: 1, agora representa 1/5 do espaço total
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  // Reduzido para permitir que a coluna de cards fique mais estreita
+  min-width: 220px;
+}
+
+.summary-card {
+  padding: 24px;
+  border-radius: 8px;
+  color: white;
+  text-align: center;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.card-title {
+  font-size: 1rem;
+  font-weight: 500;
+  margin-bottom: 12px;
+  line-height: 1.3;
+}
+
+.card-value {
+  font-size: 2.5rem;
+  font-weight: bold;
+
+  &.time {
+    font-size: 2.2rem; // Fonte um pouco menor para o formato de hora
+  }
+}
+
+/* Cores de status (consistente com o resto da aplicação) */
+.status-amarelo {
+  background-color: #ffc107;
+  color: #212529; 
+}
+
+.status-vermelho {
+  background-color: #dc3545;
+}
+
+.status-verde {
+  background-color: #28a745;
+}
+
+// Media query para empilhar em telas menores
+@media (max-width: 960px) {
+  .dashboard-container {
+    flex-direction: column;
+  }
+  
+  .chart-wrapper, .cards-wrapper {
+    width: 100%;
+    flex: 1 1 100%; // Ocupa a largura total
+    height: 25vh;
+  }
+
+  .chart-container {
+    height: 25vh;
+  }
 }

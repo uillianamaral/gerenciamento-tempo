@@ -1,23 +1,34 @@
-import { AfterViewInit, Component, OnInit, ElementRef, ViewChild, ChangeDetectorRef, Inject, PLATFORM_ID } from '@angular/core';
+import { AfterViewInit, Component, OnInit, ElementRef, ViewChild, ChangeDetectorRef, Inject, PLATFORM_ID, OnDestroy } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { MaterialModule } from '../../modules/material-module';
 import { CommonModule } from '@angular/common';
 import { PageHeaderService } from '../../core/services/page-header';
 import { isPlatformBrowser } from '@angular/common';
 import { Chart, registerables } from 'chart.js';
+import { getCorPorTempo } from '../../shared/utils/cor-por-tempo.util';
+import { formatarTempo } from '../../shared/utils/formata-tempo.util';
 
 @Component({
   selector: 'app-painel-controle-component',
   standalone: true,
   imports: [CommonModule, MaterialModule, RouterModule],
   templateUrl: './painel-controle-component.html',
-  styleUrls: ['./painel-controle-component.scss'] // corrigido
+  styleUrls: ['./painel-controle-component.scss']
 })
-export class PainelControleComponent implements OnInit, AfterViewInit {
+export class PainelControleComponent implements OnInit, AfterViewInit, OnDestroy{
 
   @ViewChild('ocorrenciasCanvas', { static: false }) canvasRef?: ElementRef<HTMLCanvasElement>;
   
   public ocorrenciasChart: Chart | null = null;
+
+  mediaEsperaSegundos = 2000; // >30 min para o exemplo
+  mediaEsperaFormatada: string = '';
+  atendimentosAcima45Min = 4;
+  // Valor em segundos > 45min (2700s) para acionar a cor vermelha no card
+  private segundosParaCorAcima45min = 2701;
+
+  // Expondo a função para ser usada no template HTML
+  public getCorPorTempo = getCorPorTempo;
 
   constructor(
     private pageHeaderService: PageHeaderService,
@@ -27,6 +38,9 @@ export class PainelControleComponent implements OnInit, AfterViewInit {
   ) {}
 
   ngOnInit(): void {
+
+    this.mediaEsperaFormatada = formatarTempo(this.mediaEsperaSegundos);
+
     if (isPlatformBrowser(this.platformId)) {
       Chart.register(...registerables);
       setTimeout(() => this.pageHeaderService.setHeader(['Painel de Controle']));
@@ -36,9 +50,23 @@ export class PainelControleComponent implements OnInit, AfterViewInit {
   ngAfterViewInit(): void {
     if (isPlatformBrowser(this.platformId)) {
       // criar o gráfico no próximo tick garante que o <canvas> esteja disponível
-      setTimeout(() => {this.createChart()});
+      // quando api tiver disponível, criar o gráfico diretamente
+      setTimeout(() => this.createChart());
     }
   }
+
+  // Retorna os segundos para o card de "Acima de 45 min" para obter a cor correta
+  getSegundosParaCorVermelha(): number {
+    return this.segundosParaCorAcima45min;
+  }
+
+  // Destrói o gráfico quando o componente é removido da tela
+  ngOnDestroy(): void {
+    if (this.ocorrenciasChart) {
+      this.ocorrenciasChart.destroy();
+    }
+  }
+
 
   createChart(): void {
 
@@ -70,7 +98,7 @@ export class PainelControleComponent implements OnInit, AfterViewInit {
       data: chartData,
       options: {
         responsive: true,
-        maintainAspectRatio: false,
+        maintainAspectRatio: false, 
         plugins: {
           title: {
             display: true,
