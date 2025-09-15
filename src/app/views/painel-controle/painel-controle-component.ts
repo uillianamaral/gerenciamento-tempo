@@ -104,7 +104,7 @@ export class PainelControleComponent implements OnInit, AfterViewInit, OnDestroy
             display: true,
             text: 'Ocorrências por Tempo de Espera',
             font: { size: 18, weight: 'bold' },
-            padding: { bottom: 20 }
+            padding: { bottom: 20 },
           },
           legend: { display: false }
         },
@@ -112,8 +112,15 @@ export class PainelControleComponent implements OnInit, AfterViewInit, OnDestroy
           y: {
             beginAtZero: true,
             title: { display: true, text: 'Qtd. Ocorrências' }
-          }
-        }
+          },
+          x: {
+            title: { display: true, text: 'Tempo de Espera', padding: { top: 10 } }
+          },
+        },
+        animation: {
+          duration: 3000,
+          easing: 'easeInBack' // animação de entrada
+        },
       }
     });
 

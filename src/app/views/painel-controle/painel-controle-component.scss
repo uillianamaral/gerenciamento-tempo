@@ -6,8 +6,7 @@
 }
 
 .chart-wrapper {
-  // Alterado de flex: 2 para flex: 4 para ocupar mais espaço
-  flex: 4;
+  flex: 6;
   min-width: 350px; // Largura mínima para o gráfico
 }
 
@@ -21,12 +20,10 @@
 }
 
 .cards-wrapper {
-  // Mantido como flex: 1, agora representa 1/5 do espaço total
   flex: 1;
   display: flex;
   flex-direction: column;
   gap: 24px;
-  // Reduzido para permitir que a coluna de cards fique mais estreita
   min-width: 220px;
 }
 
@@ -74,13 +71,23 @@
     flex-direction: column;
   }
   
-  .chart-wrapper, .cards-wrapper {
+  .chart-wrapper {
     width: 100%;
     flex: 1 1 100%; // Ocupa a largura total
     height: 25vh;
   }
 
+  .cards-wrapper {
+    flex: 1;
+    display: flex;
+    flex-direction: row;
+    gap: 4px;
+    overflow-x: auto; 
+  }
+
   .chart-container {
     height: 25vh;
+    padding: 20px;
+    flex-direction: column;
   }
 }
